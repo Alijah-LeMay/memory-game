@@ -1,3 +1,102 @@
+.game-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  margin-bottom: 20px;
+}
+
+.stats {
+  display: flex;
+  gap: 14px;
+
+  margin-bottom: 10px;
+}
+
+.stats span {
+  padding: 8px 16px;
+
+  border-radius: 999px;
+
+  background: white;
+
+  color: #c2410c;
+
+  font-weight: 800;
+
+  box-shadow:
+    0 6px 15px rgba(190, 24, 93, 0.12);
+}
+
+.winner-message {
+  color: #7c3aed;
+
+  font-size: 1.3rem;
+  font-weight: 900;
+
+  animation: winnerPop 0.5s ease;
+}
+
+@keyframes winnerPop {
+  0% {
+    transform: scale(0.8);
+  }
+
+  50% {
+    transform: scale(1.15);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+.new-game-button {
+  margin-top: 28px;
+
+  padding: 12px 30px;
+
+  border: none;
+  border-radius: 999px;
+
+  background: linear-gradient(
+    135deg,
+    #f97316,
+    #fb7185
+  );
+
+  color: white;
+
+  font-size: 1rem;
+  font-weight: 800;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 7px 0 #be123c,
+    0 12px 20px rgba(190, 24, 93, 0.2);
+
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.new-game-button:hover {
+  transform: translateY(-3px);
+
+  box-shadow:
+    0 10px 0 #be123c,
+    0 16px 24px rgba(190, 24, 93, 0.22);
+}
+
+.new-game-button:active {
+  transform: translateY(3px);
+
+  box-shadow:
+    0 3px 0 #be123c,
+    0 7px 12px rgba(190, 24, 93, 0.18);
+}
+
 .game {
   min-height: 100vh;
   display: flex;
@@ -149,6 +248,8 @@
   outline-offset: 5px;
 }
 
+
+
 @keyframes boardEntrance {
   from {
     opacity: 0;
@@ -218,6 +319,8 @@
 .memory-card:disabled {
   opacity: 1;
 }
+
+
 
 @keyframes matchedPop {
   0% {

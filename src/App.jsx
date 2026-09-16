@@ -26,6 +26,13 @@ function App() {
   const [secondCard, setSecondCard] = useState(null)
   const [isChecking, setIsChecking] = useState(false)
 
+  const [moves, setMoves] = useState(0)
+
+  const gameWon = cards.every((card) => card.isMatched)
+
+  const matchedPairs =
+  cards.filter((card) => card.isMatched).length / 2
+
   
 function handleCardClick(id) {
   if (isChecking) {
@@ -55,6 +62,9 @@ function handleCardClick(id) {
   }
 
   setSecondCard(clickedCard)
+
+  setMoves((currentMoves) => currentMoves + 1)
+
   checkForMatch(firstCard, clickedCard)
 }
 
@@ -120,19 +130,50 @@ function resetSelection() {
   setIsChecking(false)
 }
 
+function handleNewGame() {
+  setCards(createShuffledCards())
+
+  setFirstCard(null)
+  setSecondCard(null)
+
+  setIsChecking(false)
+
+  setMoves(0)
+}
+
 
   return (
     <>
     <main className="game">
       <h1> React Memory Game</h1>
 
-      <p className="instructions">Flip the cards and find the matching pairs.</p>
+      <div className="game-info">
+        <div className="stats">
+          <span>Moves: {moves}</span>
+          <span>Pairs: {matchedPairs} / 6</span>
+        </div>
+
+        <p className={`instructions ${gameWon ? 'winner-message' : ''}`}>
+          {gameWon
+            ? `You won in ${moves} moves!`
+            : 'Flip the cards and find the matching pairs.'}
+        </p>
+      </div>
+
 
       <div className="memory-board">
         {cards.map((card) => (
         <Card key={card.id} card={card} onCardClick={handleCardClick} />
       ))}
       </div>
+
+      <button
+        className="new-game-button"
+        onClick={handleNewGame}
+      >
+        {gameWon ? 'Play Again' : 'New Game'}
+      </button>
+
     </main>
      
     </>
